@@ -1,0 +1,141 @@
+// 代码高亮样式 - 基于 GitHub 风格
+.highlight {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  overflow-x: auto;
+  margin: var(--spacing-xl) 0;
+  border: 1px solid var(--border-color);
+  
+  pre {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+  }
+  
+  code {
+    background: none;
+    color: var(--text-primary);
+    padding: 0;
+  }
+  
+  // 语法高亮颜色
+  .c { color: #6a737d; } // 注释
+  .k { color: #d73a49; } // 关键字
+  .o { color: #d73a49; } // 操作符
+  .cm { color: #6a737d; } // 多行注释
+  .cp { color: #d73a49; } // 预处理
+  .c1 { color: #6a737d; } // 单行注释
+  .cs { color: #6a737d; } // 特殊注释
+  .gd { color: #b31d28; background-color: #ffeef0; } // 删除
+  .ge { font-style: italic; } // 强调
+  .gr { color: #b31d28; } // 错误
+  .gh { color: #005cc5; font-weight: bold; } // 标题
+  .gi { color: #22863a; background-color: #f0fff4; } // 插入
+  .go { color: #6a737d; } // 输出
+  .gp { color: #6a737d; } // 提示
+  .gs { font-weight: bold; } // 加粗
+  .gu { color: #6f42c1; font-weight: bold; } // 子标题
+  .gt { color: #b31d28; } // 追踪
+  .kc { color: #005cc5; } // 常量关键字
+  .kd { color: #d73a49; } // 声明关键字
+  .kn { color: #d73a49; } // 命名空间
+  .kp { color: #d73a49; } // 伪关键字
+  .kr { color: #d73a49; } // 保留字
+  .kt { color: #d73a49; } // 类型
+  .m { color: #005cc5; } // 数字
+  .s { color: #032f62; } // 字符串
+  .na { color: #6f42c1; } // 属性名
+  .nb { color: #005cc5; } // 内置
+  .nc { color: #6f42c1; } // 类名
+  .no { color: #005cc5; } // 常量
+  .nd { color: #6f42c1; } // 装饰器
+  .ni { color: #6f42c1; } // 实体
+  .ne { color: #6f42c1; } // 异常
+  .nf { color: #6f42c1; } // 函数
+  .nl { color: #6f42c1; } // 标签
+  .nn { color: #6f42c1; } // 命名空间
+  .nt { color: #22863a; } // 标签
+  .nv { color: #e36209; } // 变量
+  .ow { color: #d73a49; } // 操作符词
+  .w { color: #6a737d; } // 空白
+  .mf { color: #005cc5; } // 浮点数
+  .mh { color: #005cc5; } // 十六进制
+  .mi { color: #005cc5; } // 整数
+  .mo { color: #005cc5; } // 八进制
+  .sb { color: #032f62; } // 字符串反引号
+  .sc { color: #032f62; } // 字符
+  .sd { color: #032f62; } // 文档字符串
+  .s2 { color: #032f62; } // 双引号字符串
+  .se { color: #032f62; } // 转义
+  .sh { color: #032f62; } // Shell
+  .si { color: #005cc5; } // 插值
+  .sx { color: #032f62; } // 其他字符串
+  .sr { color: #032f62; } // 正则
+  .s1 { color: #032f62; } // 单引号字符串
+  .ss { color: #005cc5; } // 符号
+  .bp { color: #005cc5; } // 内置伪
+  .vc { color: #e36209; } // 类变量
+  .vg { color: #e36209; } // 全局变量
+  .vi { color: #e36209; } // 实例变量
+  .il { color: #005cc5; } // 长整数
+}
+
+// 夜间模式代码高亮
+[data-theme="dark"] {
+  .highlight {
+    .c { color: #8b949e; }
+    .k { color: #ff7b72; }
+    .o { color: #ff7b72; }
+    .cm { color: #8b949e; }
+    .cp { color: #ff7b72; }
+    .c1 { color: #8b949e; }
+    .cs { color: #8b949e; }
+    .gd { color: #ffa198; background-color: #490202; }
+    .gi { color: #56d364; background-color: #0f5323; }
+    .gh { color: #79c0ff; }
+    .gu { color: #d2a8ff; }
+    .kc { color: #79c0ff; }
+    .kd { color: #ff7b72; }
+    .kn { color: #ff7b72; }
+    .kp { color: #ff7b72; }
+    .kr { color: #ff7b72; }
+    .kt { color: #ff7b72; }
+    .m { color: #79c0ff; }
+    .s { color: #a5d6ff; }
+    .na { color: #d2a8ff; }
+    .nb { color: #79c0ff; }
+    .nc { color: #d2a8ff; }
+    .no { color: #79c0ff; }
+    .nd { color: #d2a8ff; }
+    .ni { color: #d2a8ff; }
+    .ne { color: #d2a8ff; }
+    .nf { color: #d2a8ff; }
+    .nl { color: #d2a8ff; }
+    .nn { color: #d2a8ff; }
+    .nt { color: #7ee787; }
+    .nv { color: #ffa657; }
+    .ow { color: #ff7b72; }
+    .mf { color: #79c0ff; }
+    .mh { color: #79c0ff; }
+    .mi { color: #79c0ff; }
+    .mo { color: #79c0ff; }
+    .sb { color: #a5d6ff; }
+    .sc { color: #a5d6ff; }
+    .sd { color: #a5d6ff; }
+    .s2 { color: #a5d6ff; }
+    .se { color: #a5d6ff; }
+    .sh { color: #a5d6ff; }
+    .si { color: #79c0ff; }
+    .sx { color: #a5d6ff; }
+    .sr { color: #a5d6ff; }
+    .s1 { color: #a5d6ff; }
+    .ss { color: #79c0ff; }
+    .bp { color: #79c0ff; }
+    .vc { color: #ffa657; }
+    .vg { color: #ffa657; }
+    .vi { color: #ffa657; }
+    .il { color: #79c0ff; }
+  }
+}

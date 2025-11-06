@@ -1,0 +1,197 @@
+---
+layout: default
+title: 标签
+permalink: /tags/
+---
+
+<div class="taxonomy-page">
+  <header class="page-header">
+    <h1>文章标签</h1>
+    <p class="page-description">通过标签快速找到相关文章</p>
+  </header>
+  
+  <div class="tags-cloud">
+    {% assign tags = site.tags | sort %}
+    {% for tag in tags %}
+      <a href="#{{ tag[0] | slugify }}" class="tag-cloud-item" style="font-size: {{ tag[1].size | times: 0.2 | plus: 1 }}rem;">
+        {{ tag[0] }}
+        <span class="tag-count">{{ tag[1] | size }}</span>
+      </a>
+    {% endfor %}
+  </div>
+  
+  <div class="tags-list">
+    {% for tag in tags %}
+      <section class="tag-section" id="{{ tag[0] | slugify }}">
+        <h2 class="tag-title">
+          #{{ tag[0] }}
+          <span class="tag-count-badge">{{ tag[1] | size }} 篇</span>
+        </h2>
+        <div class="tag-posts">
+          {% for post in tag[1] %}
+            <article class="tag-post-item">
+              <h3 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h3>
+              <div class="post-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">
+                  {{ post.date | date: "%Y年%m月%d日" }}
+                </time>
+                {% if post.categories %}
+                <span class="post-category">{{ post.categories | first }}</span>
+                {% endif %}
+              </div>
+              {% if post.excerpt %}
+              <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.taxonomy-page {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+  padding-bottom: var(--spacing-2xl);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-header h1 {
+  font-size: var(--text-4xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.page-description {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+}
+
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.tag-cloud-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  font-weight: 500;
+  
+  &:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.tag-count {
+  font-size: 0.8em;
+  opacity: 0.7;
+}
+
+.tags-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xl);
+}
+
+.tag-section {
+  scroll-margin-top: 100px;
+}
+
+.tag-title {
+  font-size: var(--text-3xl);
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.tag-count-badge {
+  font-size: var(--text-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+
+.tag-posts {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+.tag-post-item {
+  padding: var(--spacing-xl);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  
+  &:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.tag-post-item .post-title {
+  font-size: var(--text-xl);
+  margin-bottom: var(--spacing-md);
+  
+  a {
+    color: var(--text-primary);
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}
+
+.tag-post-item .post-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+.tag-post-item .post-category {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+}
+
+.tag-post-item .post-excerpt {
+  color: var(--text-secondary);
+  margin: 0;
+}
+</style>

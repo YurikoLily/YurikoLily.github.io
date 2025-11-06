@@ -1,0 +1,144 @@
+---
+layout: default
+title: 所有文章
+permalink: /posts/
+---
+
+<div class="posts-archive">
+  <header class="page-header">
+    <h1>所有文章</h1>
+    <p class="page-description">共 {{ site.posts | size }} 篇文章</p>
+  </header>
+  
+  <div class="archive-list">
+    {% for post in site.posts %}
+      {% assign current_year = post.date | date: "%Y" %}
+      {% assign previous_year = post.previous.date | date: "%Y" %}
+      
+      {% if current_year != previous_year %}
+        <h2 class="archive-year">{{ current_year }}</h2>
+      {% endif %}
+      
+      <article class="archive-item">
+        <time class="archive-date" datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%m-%d" }}
+        </time>
+        <div class="archive-content">
+          <h3 class="archive-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h3>
+          {% if post.categories %}
+          <span class="archive-category">{{ post.categories | first }}</span>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.posts-archive {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+  padding-bottom: var(--spacing-2xl);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-header h1 {
+  font-size: var(--text-4xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.page-description {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+}
+
+.archive-list {
+  position: relative;
+}
+
+.archive-year {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: var(--spacing-3xl) 0 var(--spacing-xl);
+  position: sticky;
+  top: 80px;
+  background: var(--bg-primary);
+  padding: var(--spacing-md) 0;
+  z-index: 10;
+}
+
+.archive-item {
+  display: flex;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-lg) 0;
+  border-bottom: 1px solid var(--border-color);
+  transition: all var(--transition-fast);
+}
+
+.archive-item:hover {
+  padding-left: var(--spacing-md);
+  background: var(--bg-secondary);
+  margin: 0 calc(var(--spacing-md) * -1);
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-md);
+  border-radius: var(--radius-md);
+}
+
+.archive-date {
+  flex-shrink: 0;
+  width: 60px;
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.archive-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.archive-title {
+  flex: 1;
+  font-size: var(--text-lg);
+  margin: 0;
+  
+  a {
+    color: var(--text-primary);
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}
+
+.archive-category {
+  flex-shrink: 0;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .archive-item {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .archive-date {
+    width: auto;
+  }
+}
+</style>

@@ -1,0 +1,74 @@
+---
+layout: default
+---
+
+<article class="post-single">
+    <header class="post-header">
+        <div class="post-meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}">
+                {{ page.date | date: "%Y年%m月%d日" }}
+            </time>
+            {% if page.categories %}
+            <span class="post-categories">
+                {% for category in page.categories %}
+                <a href="{{ '/categories/' | relative_url }}#{{ category | slugify }}" class="category-tag">{{ category }}</a>
+                {% endfor %}
+            </span>
+            {% endif %}
+        </div>
+        
+        <h1 class="post-title">{{ page.title }}</h1>
+        
+        {% if page.excerpt %}
+        <p class="post-excerpt">{{ page.excerpt }}</p>
+        {% endif %}
+        
+        {% if page.tags %}
+        <div class="post-tags">
+            {% for tag in page.tags %}
+            <a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}" class="tag">#{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </header>
+    
+    <div class="post-content">
+        {{ content }}
+    </div>
+    
+    <footer class="post-footer">
+        <div class="post-author">
+            <div class="author-info">
+                <span class="author-name">{{ page.author | default: site.author }}</span>
+                <span class="post-date">发布于 {{ page.date | date: "%Y年%m月%d日" }}</span>
+            </div>
+        </div>
+        
+        {% if page.comments %}
+        <div class="post-comments">
+            <h3>评论</h3>
+            <!-- 这里可以集成Giscus、Utterances等评论系统 -->
+            <div id="comments-container">
+                <p class="comments-placeholder">评论功能即将开放</p>
+            </div>
+        </div>
+        {% endif %}
+    </footer>
+    
+    <!-- 文章导航 -->
+    <nav class="post-navigation">
+        {% if page.previous.url %}
+        <a href="{{ page.previous.url | relative_url }}" class="nav-previous">
+            <span class="nav-label">← 上一篇</span>
+            <span class="nav-title">{{ page.previous.title }}</span>
+        </a>
+        {% endif %}
+        
+        {% if page.next.url %}
+        <a href="{{ page.next.url | relative_url }}" class="nav-next">
+            <span class="nav-label">下一篇 →</span>
+            <span class="nav-title">{{ page.next.title }}</span>
+        </a>
+        {% endif %}
+    </nav>
+</article>

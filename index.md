@@ -1,7 +1,4 @@
 ---
 layout: home
-title: Home
+title: 首页
 ---
-
-# Hello, world!
-这是我的博客首页。

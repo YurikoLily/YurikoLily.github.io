@@ -1,0 +1,151 @@
+---
+layout: default
+title: 分类
+permalink: /categories/
+---
+
+<div class="taxonomy-page">
+  <header class="page-header">
+    <h1>文章分类</h1>
+    <p class="page-description">按主题浏览文章</p>
+  </header>
+  
+  <div class="taxonomy-grid">
+    {% assign categories = site.categories | sort %}
+    {% for category in categories %}
+      <div class="taxonomy-card" id="{{ category[0] | slugify }}">
+        <h2 class="taxonomy-name">
+          {{ category[0] }}
+          <span class="taxonomy-count">{{ category[1] | size }}</span>
+        </h2>
+        <ul class="taxonomy-posts">
+          {% for post in category[1] limit:5 %}
+            <li>
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              <time datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%Y-%m-%d" }}
+              </time>
+            </li>
+          {% endfor %}
+          {% if category[1].size > 5 %}
+            <li class="more-link">
+              <a href="#{{ category[0] | slugify }}">查看全部 {{ category[1] | size }} 篇 →</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.taxonomy-page {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+  padding-bottom: var(--spacing-2xl);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-header h1 {
+  font-size: var(--text-4xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.page-description {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+}
+
+.taxonomy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.taxonomy-card {
+  padding: var(--spacing-xl);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.taxonomy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.taxonomy-name {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--spacing-lg);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.taxonomy-count {
+  font-size: var(--text-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+
+.taxonomy-posts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.taxonomy-posts li {
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.taxonomy-posts li:last-child {
+  border-bottom: none;
+}
+
+.taxonomy-posts a {
+  color: var(--text-primary);
+  flex: 1;
+  
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
+.taxonomy-posts time {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.more-link a {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .taxonomy-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .taxonomy-posts li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>

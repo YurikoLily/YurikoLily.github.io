@@ -1,3 +1,77 @@
+# 网站基本信息
 title: Yuriko Lily
-description: My blog
-remote_theme: "mmistakes/minimal-mistakes"
+description: 探索技术与生活的美好交汇点
+author: Yuriko Lily
+email: ffflau2023@outlook.com
+url: "https://yurikolily.github.io"
+baseurl: ""
+
+# 构建设置
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+timezone: Asia/Shanghai
+
+# 分页设置
+paginate: 9
+paginate_path: "/page/:num/"
+
+# 插件
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+# 集合配置
+collections:
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:title/
+
+# 默认值
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Yuriko Lily"
+      comments: true
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# 排除文件
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+
+# Sass配置
+sass:
+  style: compressed
+
+# SEO设置
+lang: zh-CN
+social:
+  name: Yuriko Lily
+  links:
+    - https://github.com/YurikoLily
+
+# 导航菜单
+navigation:
+  - title: 首页
+    url: /
+  - title: 文章
+    url: /posts/
+  - title: 分类
+    url: /categories/
+  - title: 标签
+    url: /tags/
+  - title: 关于
+    url: /about/
